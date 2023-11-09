@@ -15,4 +15,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('home');
+
+Route::view('kamar', 'kamar')->name('kamar');
+
+Route::group([
+    'prefix'=>config('admin.path'),
+], function(){
+    Route::get('login','LoginAdminController@formLogin')->name('admin.login');
+    Route::post('login','LoginAdminController@login');
+
+    Route::group(['middleware'=>'auth:admin'], function(){
+        Route::post('logout','LoginAdminController@logout')->name('admin.logout');
+
+        Route::view('/','layouts.dashboard')->name('dashboard');
+        Route::group(['middleware'=>['can:role,"admin"']], function(){
+           Route::resource('admin','AdminController');
+        });
+       
+    });
 });
+
+
+
