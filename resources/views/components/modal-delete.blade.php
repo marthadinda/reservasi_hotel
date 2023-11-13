@@ -1,6 +1,6 @@
-<div class="modal fade" id="modalDelete" data-backdrop="static" data-keyboard="false" tabindex="-1"
+<div class="modal fade" id="modalDelete" data-backdrop="static" data-keyboard="false" tabindex="-1">
   <div class="modal-dialog modal-sm">
-    <form class="modal-content" method="post" action="#">
+    <form class="modal-content" >
         @method('delete')
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>

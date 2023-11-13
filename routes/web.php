@@ -30,7 +30,7 @@ Route::group([
 
         Route::view('/','layouts.dashboard')->name('dashboard');
         Route::group(['middleware'=>['can:role,"admin"']], function(){
-           Route::resource('admin','AdminController');
+           Route::resource('admin','Admincontroller');
         });
        
     });
