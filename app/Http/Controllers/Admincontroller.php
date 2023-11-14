@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 
@@ -126,4 +127,16 @@ class Admincontroller extends Controller
         
         return redirect()->route('admin.index')->with('status','destroy');
     }
+    public function akun()
+    {
+       $admin = Auth::user();
+       return view('admin.akun',['row'=>$admin]);
+    }
+
+    function updateAkun() 
+    {
+
 }
+        
+    }
+
