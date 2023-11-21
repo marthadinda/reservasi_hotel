@@ -30,11 +30,12 @@ Route::group([
 
         Route::view('/','layouts.dashboard')->name('dashboard');
         
-        Route::get('/akun', 'AdminController@akun')->name('admin.akun');
-        Route::put('/akun', 'AdminController@updateAkun');
+        Route::get('/akun', 'Admincontroller@akun')->name('admin.akun');
+        Route::put('/akun', 'Admincontroller@updateAkun');
 
         Route::group(['middleware'=>['can:role,"admin"']], function(){
            Route::resource('admin','Admincontroller');
+           Route::resource('kamar','KamarController');
         });
        
     });

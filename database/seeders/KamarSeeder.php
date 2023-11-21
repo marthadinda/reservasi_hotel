@@ -4,20 +4,17 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Kamar;
 
-class DatabaseSeeder extends Seeder
+class KamarSeeder extends Seeders
 {
     /**
      * Seed the application's database.
-     *
+     * 
      * @return void
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call([
-            AdminSeeder::class,
-            KamarSeeder::class
-        ]);
+        Kamar::factory(10)->create();
     }
 }
