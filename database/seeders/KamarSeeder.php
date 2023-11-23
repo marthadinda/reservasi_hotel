@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Kamar;
 
-class KamarSeeder extends Seeders
+class KamarSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -15,6 +15,6 @@ class KamarSeeder extends Seeders
      */
     public function run()
     {
-        Kamar::factory(10)->create();
+        Kamar::factory(3)->create();
     }
 }

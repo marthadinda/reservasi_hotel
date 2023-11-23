@@ -64,5 +64,6 @@ version 1.0.1
 <script src="/adminIte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="/adminIte/dist/js/.min.js?v=3.2.0"></script>
+@stack('js')
 </body>
 </html>

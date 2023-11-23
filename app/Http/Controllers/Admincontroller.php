@@ -124,9 +124,10 @@ class Admincontroller extends Controller
     public function destroy(Admin $admin)
     {
         $admin->delete();
-        
-        return redirect()->route('admin.index')->with('status','destroy');
+
+        return redirect()->route('admin.index')->with('status', 'destroy');
     }
+
     public function akun()
     {
        $admin = Auth::user();

@@ -11,9 +11,14 @@ class KamarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Kamar::select('id','nama_kamar','jum_kamar','harga_kamar')
+        $search = $request->search;
+        $data = Kamar::select('id','nama_kamar','foto_kamar','jum_kamar','harga_kamar', 'deskripsi_kamar')
+                ->when($search, function($query, $search) {
+                    return $query->where('nama_kamar','like', "%{$search}%")
+                            ->orWhere('harga_kamar','like',"%{$search}%");
+                })
                 ->paginate(50);
        return view('kamar.index',['data'=>$data]);
     }
@@ -25,7 +30,7 @@ class KamarController extends Controller
      */
     public function create()
     {
-        //
+        return view('kamar.create');
     }
 
     /**
@@ -36,7 +41,27 @@ class KamarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_kamar'=>'required|min:3',
+            'foto'=>'required|image|mimes:png,jpg,jpeg',
+            'jumlah'=>'required',
+            'harga'=>'required',
+            'deskripsi'=>'nullable|min:10',
+        ]);
+
+        $ext = $request->foto->getClientOriginalExtension();
+        $filename = rand(9,999).'_'.time().'.'.$ext;
+        $request->foto->move('images/kamar', $filename);
+
+        Kamar::create([
+            'nama_kamar' => $request->nama_kamar,
+            'foto_kamar' => $filename,
+            'jum_kamar' => $request->jumlah,
+            'harga_kamar' => $request->harga,
+            'deskripsi_kamar' => $request->deskripsi
+        ]);
+
+        return redirect()->route('kamar.index')->with('status', 'store');
     }
 
     /**

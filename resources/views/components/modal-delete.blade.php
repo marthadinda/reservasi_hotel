@@ -1,20 +1,35 @@
-<div class="modal fade" id="modalDelete" data-backdrop="static" data-keyboard="false" tabindex="-1">
-  <div class="modal-dialog modal-sm">
-    <form class="modal-content" >
+<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form class="modal-content" method="post">
         @method('delete')
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span> 
+        <h6 class="modal-title" id="exampleModalLabel">
+            <i class="fas fa-trash"></i> Hapus
+        </h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Apakah yakin akan dihapus!
+        Apakah Anda Yakin ingin dihapus?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
         <button type="submit" class="btn btn-danger">Ya, Hapus</button>
       </div>
     </form>
   </div>
 </div>
+
+@push('js')
+    <script>
+        $(function name(params) {
+            $('#ModalDelete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) 
+            var recipient = button.data('link')
+            var modal = $(this)
+            modal.find('.modal-content').attr('action', recipient)
+            });
+        });
+    </script>
+@endpush
